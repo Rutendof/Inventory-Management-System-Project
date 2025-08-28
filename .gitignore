@@ -1,0 +1,9 @@
+/backend/vendor
+/frontend/node_modules
+/backend/.env
+/frontend/.env
+/.idea
+/.vscode
+/.DS_Store
+npm-debug.log
+yarn-error.log

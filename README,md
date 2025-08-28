@@ -1,0 +1,27 @@
+# IMS (Inventory Management System)
+
+
+## What this repository contains
+- Docker Compose stack running Laravel (PHP-FPM) + Nginx + PostgreSQL + MongoDB + Redis + Node (for React dev)
+- A React frontend scaffold that calls Laravel API endpoints
+- Laravel CRUD for inventory items (model, migration, controller, API routes)
+
+
+## Quick start (Windows with Docker Desktop + Git Bash)
+1. Clone repository (or create project folder and paste files)
+2. Open Git Bash and `cd` into the project root
+3. Create folders: `backend`, `frontend`, `nginx/conf.d`
+4. Paste the files from this repo into the correct locations
+
+
+Create Laravel and React apps using Docker (if you do not have Composer/Node locally):
+
+
+```bash
+# from ims-project
+# create Laravel in backend
+docker run --rm -v ${PWD}/backend:/var/www -w /var/www composer:2 create-project laravel/laravel .
+
+
+# create React app in frontend
+docker run --rm -v ${PWD}/frontend:/usr/src/app -w /usr/src/app node:18 npx create-react-app .
