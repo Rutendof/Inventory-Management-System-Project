@@ -14,7 +14,7 @@
 4. Paste the files from this repo into the correct locations
 
 
-Create Laravel and React apps using Docker (if you do not have Composer/Node locally):
+Create Laravel and React apps using Docker:
 
 
 ```bash
