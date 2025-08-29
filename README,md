@@ -1,159 +1,68 @@
-
-```
 # Inventory Management System (IMS)
 
-A full-stack **Inventory Management System** built with **Laravel (PHP-FPM)**, **React (Vite)**, **PostgreSQL**, **MongoDB**, **Redis**, and **Docker Compose**.  
-This project demonstrates a modern web stack with Dockerized services for easy development and deployment.
+## Overview
+Inventory Management System (IMS) built with **Laravel** (backend) and **React + Vite** (frontend).  
+Fully containerized using **Docker** for easy setup with **PostgreSQL** and **Nginx**.
 
----
-
-## Tech Stack
-
-- **Backend:** Laravel 10 (PHP 8.1-FPM)  
-- **Frontend:** React + Vite  
-- **Database:** PostgreSQL (main inventory storage), MongoDB (optional metadata/log storage)  
-- **Cache:** Redis  
-- **Web Server:** Nginx  
-- **Containerization:** Docker + Docker Compose  
+This system allows you to manage products, perform CRUD operations, and access a frontend dashboard that consumes backend APIs.
 
 ---
 
 ## Features
-
-- Full CRUD for inventory items (Create, Read, Update, Delete)  
-- Inventory model with fields: `name`, `SKU`, `quantity`, `price`, `category`, `metadata`  
-- Caching for improved performance using Redis  
-- Dockerized backend and frontend for easy local development  
-- Optional integration with MongoDB for storing product metadata  
-
----
-
-## Project Structure
-
-ims-project/
-├─ backend/          # Laravel backend
-│  ├─ Dockerfile
-│  ├─ .env.example
-│  └─ app/, routes/, database/, etc.
-├─ frontend/         # React frontend
-│  └─ src/, public/, package.json, etc.
-├─ nginx/
-│  └─ default.conf
-├─ docker-compose.yml
-├─ .gitignore
-└─ README.md
+- Product CRUD (Create, Read, Update, Delete)
+- API endpoints for frontend consumption
+- React dashboard displaying products
+- Dockerized setup with PostgreSQL and Nginx
+- Ready for local development and testing
 
 ---
 
-## Quick Start (Windows)
+## Tech Stack
+- **Backend:** PHP 8, Laravel 10, PostgreSQL
+- **Frontend:** React 19, Vite, Axios
+- **Containerization:** Docker, Docker Compose
+
+---
+
+## Setup Instructions
 
 ### 1. Clone the repository
-
-git clone https://github.com/<your-username>/ims-project.git
+```bash
+git clone https://github.com/yourusername/ims-project.git
 cd ims-project
 
-### 2. Create Dockerized apps
-
-
-# Create Laravel backend
-docker run --rm -v ${PWD}/backend:/var/www -w /var/www composer:2 create-project laravel/laravel .
-
-# Create React frontend
-docker run --rm -v ${PWD}/frontend:/usr/src/app -w /usr/src/app node:18 npx create-react-app .
-
-> If apps are already created, skip this step.
-
----
+### 2. Configure environment variables
+cp backend/.env.example backend/.env
 
 ### 3. Build and start Docker containers
+docker-compose up --build
 
-docker-compose up --build -d
-
-- Backend (Laravel + PHP-FPM): http://localhost:9000  
-- Frontend (React + Vite): http://localhost:5173  
-
-> Nginx is configured to serve backend on port 8080 if needed.
-
----
-
-### 4. Laravel setup
-
-Generate app key:
-
-docker-compose exec backend php artisan key:generate
-
-Run database migrations:
-
+### 4. Run database migrations
 docker-compose exec backend php artisan migrate
 
----
+### 5. Access the application
+Frontend: http://localhost:5173
 
-## Usage
+Backend API: http://localhost:9000/api/products
 
-- Frontend React app interacts with Laravel API endpoints:
+### Project Structure
+ims-project/
+├─ backend/               # Laravel backend
+│  ├─ app/
+│  ├─ routes/
+│  ├─ database/
+│  ├─ .env.example
+├─ frontend/              # React + Vite frontend
+│  ├─ src/
+│  ├─ public/
+│  ├─ package.json
+├─ docker-compose.yml
+├─ README.md
+└─ .gitignore
 
-| Action | Endpoint |
-|--------|----------|
-| List Inventories | GET /api/inventories |
-| Create Inventory | POST /api/inventories |
-| Update Inventory | PUT /api/inventories/{id} |
-| Delete Inventory | DELETE /api/inventories/{id} |
+### Author
+Rutendo S
 
-- InventoryForm component in React handles creating and editing items.  
-- InventoryList component shows all items with edit/delete buttons.
+GitHub: Rutendof
 
----
-
-## Environment Variables
-
-**backend/.env.example**
-
-APP_NAME=IMS  
-APP_ENV=local  
-APP_KEY=  
-APP_DEBUG=true  
-APP_URL=http://localhost:9000  
-DB_CONNECTION=pgsql  
-DB_HOST=db  
-DB_PORT=5432  
-DB_DATABASE=ims_db  
-DB_USERNAME=ims_user  
-DB_PASSWORD=secret  
-MONGO_URI=mongodb://mongo:27017/ims_mongo  
-CACHE_DRIVER=redis  
-REDIS_HOST=redis  
-REDIS_PORT=6379  
-
-**frontend/.env (optional)**
-
-REACT_APP_API_URL=http://localhost:9000
-
----
-
-## GitHub Submission / Sharing
-
-1. Add, commit, and push your code:
-
-git add .
-git commit -m "Initial IMS project scaffold"
-git push -u origin main
-
-2. Share the GitHub repo URL:  
-https://github.com/<your-username>/ims-project
-
----
-
-## Optional Enhancements
-
-- Integrate MongoDB for storing product metadata or logs  
-- Add user authentication with Laravel Sanctum  
-- Improve frontend styling and UI/UX  
-- Deploy the full stack to a cloud provider (Render, Railway, AWS, etc.)
-
----
-
-## License
-
-This project is for educational purposes and personal portfolio use.
-```
 
